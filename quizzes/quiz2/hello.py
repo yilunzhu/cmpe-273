@@ -14,7 +14,7 @@ def hello():
 def users_get(uid):
     if len(users) == 0 or uid > len(users):
         abort(404)
-    return json.dumps({'id': userId, 'name': users[uid]})
+    return json.dumps({'id': uid, 'name': users[uid]})
 
 @app.route('/users', methods=['POST'])
 def users_post():
@@ -26,11 +26,8 @@ def users_post():
 
 @app.route('/users/<int:uid>', methods=['DELETE'])
 def users_delete(uid):
-    if len(users) == 0 or userId > len(users):
+    if len(users) == 0 or uid > len(users):
         abort(404)
-    user = users[userId-1]
+    user = users[uid-1]
     users.remove(user)
-    return jsonify({'result': True})
-    
-    usersMap.pop(userId, None)
-        return "", 204
+    return "", 204
